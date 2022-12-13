@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_fiscal_position_bahrain" model="account.fiscal.position.template">
+        <field name="name">Bahrain</field>
+        <field name="auto_apply" eval="True"/>
+        <field name="sequence">16</field>
+        <field name="country_id" ref="base.bh"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+    </record>
+    <record id="account_fiscal_position_bahrain_01" model="account.fiscal.position.tax.template">
+        <field name="tax_src_id" ref="bh_sale_tax_10_bahrain"/>
+        <field name="tax_dest_id" ref="bh_sale_tax_10_bahrain"/>
+        <field name="position_id" ref="account_fiscal_position_bahrain"/>
+    </record>
+
+
+
+
+</odoo>

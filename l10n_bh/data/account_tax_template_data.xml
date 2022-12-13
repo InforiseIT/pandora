@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="bh_sale_tax_10_bahrain" model="account.tax.template">
+        <field name="name">VAT 10%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">10</field>
+        <field name="amount_type">percent</field>
+        <field name="description">VAT 10%</field>
+        <!--<field name="country_id" ref="base.bh"/>-->
+         <field name="tax_group_id" ref="bh_tax_group_10"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_base_bahrain_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_vat_bahrain_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_base_bahrain_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_vat_bahrain_tag')],
+            }),
+        ]"/>
+    </record>
+
+    <record id="bh_tax_sale_10_incl" model="account.tax.template">
+        <field name="name">VAT 10% Incl.</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">10</field>
+        <field name="amount_type">percent</field>
+        <field name="description">VAT 10% Incl.</field>
+        <field name="price_include">1</field>
+        <field name="include_base_amount">1</field>
+        <!--<field name="country_id" ref="base.bh"/>-->
+<!--        <field name="tax_group_id" ref="bh_tax_group_10_inc"/>-->
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_base_bahrain_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_vat_bahrain_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+               'minus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_base_bahrain_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_supplies_vat_bahrain_tag')],
+            }),
+        ]"/>
+    </record>
+
+    <record id="bh_sale_tax_exempted" model="account.tax.template">
+        <field name="name">Exempted Tax</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">0</field>
+        <field name="amount_type">percent</field>
+        <field name="description">Exempted</field>
+        <field name="tax_group_id" ref="bh_tax_group_exempted"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_exempt_supplies_base_tag')],
+            }),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_exempt_supplies_base_tag')],
+            }),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+    </record>
+    <record id="bh_sale_tax_0" model="account.tax.template">
+        <field name="name">VAT 0%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">0</field>
+        <field name="amount_type">percent</field>
+        <field name="description">VAT 0%</field>
+        <field name="tax_group_id" ref="bh_tax_group_0"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_zero_rated_supplies_base_tag')],
+            }),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_zero_rated_supplies_base_tag')],
+            }),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+    </record>
+    <record id="bh_export_tax" model="account.tax.template">
+        <field name="name">Export Tax 0%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">0</field>
+        <field name="amount_type">percent</field>
+        <field name="description">Export Tax</field>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {'repartition_type': 'base'}),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {'repartition_type': 'base'}),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+    </record>
+    <record id="bh_sale_tax_reverse_charge_bahrain" model="account.tax.template">
+        <field name="name">Reverse Charge Provision (Bahrain)</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">5</field>
+        <field name="amount_type">percent</field>
+        <field name="description">Supplies subject to reverse charge provisions</field>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_base_tag'), ref('tax_report_line_supplies_reverse_charge_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'plus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_vat_tag')],
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'minus_report_expression_ids': [ref('tax_report_line_supplies_reverse_charge_vat_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_base_tag'), ref('tax_report_line_supplies_reverse_charge_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'minus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_vat_tag')],
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'plus_report_expression_ids': [ref('tax_report_line_supplies_reverse_charge_vat_tag')],
+            }),
+        ]"/>
+    </record>
+   
+    <record id="bh_sale_tax_tourist_refund" model="account.tax.template">
+        <field name="name">Tourist Refund scheme 5%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">5.0</field>
+        <field name="amount_type">percent</field>
+        <field name="description">Tax Refunds provided to Tourists under the Tax Refunds for Tourists Scheme</field>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_tax_refund_tourist_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'plus_report_expression_ids': [ref('tax_report_line_tax_refund_tourist_vat_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_tax_refund_tourist_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'minus_report_expression_ids': [ref('tax_report_line_tax_refund_tourist_vat_tag')],
+            }),
+        ]"/>
+    </record>
+
+    <!-- purchase taxes -->
+
+    <record id="bh_purchase_tax_10" model="account.tax.template">
+        <field name="name">VAT 10%</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount">10</field>
+        <field name="amount_type">percent</field>
+        <field name="description">VAT 10%</field>
+        <field name="tax_group_id" ref="bh_tax_group_10"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_vat_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_vat_tag')],
+            }),
+        ]"/>
+    </record>
+
+    <record id="bh_tax_purchase_10_incl" model="account.tax.template">
+        <field name="name">VAT 10% Incl.</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount">10</field>
+        <field name="amount_type">percent</field>
+        <field name="description">VAT 10% Incl.</field>
+        <field name="price_include">1</field>
+        <field name="include_base_amount">1</field>
+        <!--<field name="country_id" ref="base.bh"/>-->
+<!--         <field name="tax_group_id" ref="bh_tax_group_10_inc"/>-->
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'plus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_base_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'minus_report_expression_ids': [ref('tax_report_line_standard_rated_expense_vat_tag')],
+            }),
+        ]"/>
+    </record>
+
+
+    <record id="bh_purchase_tax_exempted" model="account.tax.template">
+        <field name="name">Exempted Tax</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount">0</field>
+        <field name="amount_type">percent</field>
+        <field name="description">Exempted Tax</field>
+        <field name="tax_group_id" ref="bh_tax_group_exempted"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {'repartition_type': 'base'}),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {'repartition_type': 'base'}),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+    </record>
+    <record id="bh_purchase_tax_0" model="account.tax.template">
+        <field name="name">VAT 0%</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount">0</field>
+        <field name="amount_type">percent</field>
+        <field name="description">VAT 0%</field>
+        <field name="tax_group_id" ref="bh_tax_group_0"/>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {'repartition_type': 'base'}),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {'repartition_type': 'base'}),
+            (0,0, {'repartition_type': 'tax'}),
+        ]"/>
+    </record>
+
+
+    <record id="bh_import_tax" model="account.tax.template">
+        <field name="name">Import Tax</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount">100</field>
+        <field name="amount_type">division</field>
+        <field name="description">Import Tax</field>
+        <field name="price_include">1</field>
+        <field name="include_base_amount">1</field>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_import_bh_base_tag')],
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'plus_report_expression_ids': [ref('tax_report_line_import_bh_vat_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_import_bh_base_tag')],
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'minus_report_expression_ids': [ref('tax_report_line_import_bh_vat_tag')],
+            }),
+        ]"/>
+    </record>
+    <record id="bh_purchase_tax_reverse_charge" model="account.tax.template">
+        <field name="name">Reverse Charge Provision</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount">5</field>
+        <field name="amount_type">percent</field>
+        <field name="description">Supplies subject to reverse charge provisions</field>
+        <field name="chart_template_id" ref="bh_chart_template_standard"/>
+        <field name="invoice_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'plus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_base_tag'), ref('tax_report_line_supplies_reverse_charge_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'plus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_vat_tag')],
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'minus_report_expression_ids': [ref('tax_report_line_supplies_reverse_charge_vat_tag')],
+            }),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5, 0, 0),
+            (0,0, {
+                'repartition_type': 'base',
+                'minus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_base_tag'), ref('tax_report_line_supplies_reverse_charge_base_tag')],
+            }),
+            (0,0, {
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_104041'),
+                'minus_report_expression_ids': [ref('tax_report_line_expense_supplies_reverse_vat_tag')],
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('bh_account_201017'),
+                'plus_report_expression_ids': [ref('tax_report_line_supplies_reverse_charge_vat_tag')],
+            }),
+        ]"/>
+    </record>
+</odoo>
