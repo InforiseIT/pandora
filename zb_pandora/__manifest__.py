@@ -27,9 +27,9 @@
 
     # always loaded
     'data': [
-
-
-
+        'reports/barcode_template.xml',
+        'reports/reports.xml',
+        'views/product_view.xml',
 
     ],
 
@@ -41,4 +41,7 @@
     'qweb': [
 
     ],
+
+    'installable': True,
+    'auto_install': False,
 }

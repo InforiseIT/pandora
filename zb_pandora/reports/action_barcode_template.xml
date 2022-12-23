@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="barcode_report_action">
+ <t t-call="web.html_container_action">
+
+    <t t-call="web.external_layout">
+
+
+       <span>
+          <h2>Barcode</h2>
+
+      </span><br></br>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'/>
+    <style>
+   body {
+       font-family: 'Libre Barcode 39';font-size: 22px;
+        }
+    </style>
+</head>
+
+
+
+
+          <div class="page">
+          <div>
+
+              <div  style="width:22mm;
+                           height:10mm;border:1px solid #000;
+                           text-align: center;
+                           display: inline-block;
+                           position: absolute;
+                           left: 40.5%;
+                           transform: translateX(-50%);">
+                  <p class="claimedRight"  style="font-size:8px;">
+                       <t t-foreach="docs" t-as="doc">
+                          <span  t-field="doc.barcode" style="font-family: 'Libre Barcode 39';"/><br></br>
+                       </t>
+                       <t t-foreach="docs" t-as="doc">
+                            <span  t-field="doc.default_code"/><br></br>
+                       </t>
+                        <t t-foreach="docs" t-as="doc">
+                            <span  t-field="doc.list_price"/>
+                        </t>
+                       <t t-foreach="docs" t-as="doc">
+                            <span  t-field="doc.currency_id"/>
+                       </t>
+                  </p>
+              </div>
+              <div  style="width:22mm;height:10mm;
+                           border:1px solid #000;
+                           display: inline-block;
+                           position: absolute;
+                           left: 50%;
+                           max-width:20ch;">
+                      <p style="text-align:center; font-size:8px;
+
+                                                                    white-space:nowrap;
+                                                                    text-overflow: ellipsis;
+                                                                    overflow: hidden;">
+
+                             <t t-foreach="docs" t-as="doc">
+                                 <span  t-field="doc.name"/><br></br>
+                             </t>
+                             <t t-foreach="docs" t-as="doc">
+                                <span  t-field="doc.x_studio_net_weight_1"/>
+                             </t>
+                      </p>
+              </div>
+
+          </div>
+
+         </div>
+
+
+    </t>
+  </t>
+</template>
+
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="barcode_report">
+ <t t-call="web.html_container">
+
+    <t t-call="web.external_layout">
+
+
+       <span>
+          <h2>Barcode</h2>
+
+      </span><br/>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'/>
+    <style>
+   body {
+       font-family: 'Libre Barcode 39';font-size: 22px;
+        }
+    </style>
+</head>
+
+          <div class="page">
+
+              <t t-foreach="product_obj" t-as="ele">
+           
+                  <div  style="width:22mm;
+                           height:10mm;border:1px solid #000;
+                           text-align: center;
+                           display: inline-block;
+                           position: absolute;
+                           left: 40.5%;
+                           font-size:8px;
+                           transform: translateX(-50%);">
+
+                         <p class="claimedRight"  style="font-size:8px;">
+                                <span  t-esc="ele['barcode']" style="font-family: 'Libre Barcode 39';"/><br/>
+                                <span  t-esc="ele['default_code']" /><br/>
+                                <span  t-esc="ele['list_price']"/>
+                                <span  t-esc="ele['currency_id']"/>
+                         </p>
+                  </div>
+                  <div  style="width:22mm;height:10mm;
+                               border:1px solid #000;
+                               display: inline-block;
+                               position: absolute;
+                               left: 50%;
+                               font-size:8px;
+                               max-width:20ch;">
+                          <p style="text-align:center; font-size:8px;">
+                              <span  t-esc="ele['name']"/><br/>
+                              <span  t-esc="ele['x_studio_net_weight_1']"/>
+                          </p>
+                  </div>
+              </t>
+
+          </div>
+
+
+
+
+    </t>
+  </t>
+</template>
+
+</odoo>

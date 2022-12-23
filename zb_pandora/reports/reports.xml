@@ -1,0 +1,20 @@
+<odoo>
+	<data>
+
+      <!--barcode report -->
+		<record id="action_report_barcode" model="ir.actions.report">
+            <field name="name">Print Barcode</field>
+            <field name="model">product.template</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_pandora.barcode_report</field>
+            <field name="report_file">zb_pandora.barcode_report</field>
+
+            <field name="binding_model_id" ref="model_product_template"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+
+
+	</data>
+</odoo>
