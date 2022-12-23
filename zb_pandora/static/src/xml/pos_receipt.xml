@@ -69,7 +69,7 @@
                     <div class="pos-left-align" style="font-size:12px;">
                         <span>Client:
                             <t t-if="receipt.partner">
-                                <t t-esc="receipt.partner.name" style="font-size:12px;"/>
+                                <t t-esc="receipt.partner.name" style="font-size:13px;"/>
                             </t>
                         </span><br /><br/>
                         <span><b>Receipt NO: </b>
