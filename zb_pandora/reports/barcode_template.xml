@@ -4,22 +4,49 @@
         <template id="zb_pandora.barcode_report">
             <div t-call="web.html_container">
                 <div class="page">
-                    <style type="text/css">
-                        .barcode_class { display: block; width: 22px; height: 1px; }
-                    </style>
+
                     <t t-foreach="product_obj" t-as="ele">
                             <div>
                                 <div style="width: 50%; float:left;font-size:6px;">
-                                     <span t-if="ele['barcode']">
-                                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', ele['barcode'], 00, 00)" style="width:50%;height:8px"/>
-                                        </span><br/>
-                                    <span t-esc="ele['default_code']"/><br/>
-                                    <span t-esc="ele['list_price']"/>
-                                    <span t-esc="ele['currency_id']"/>
+                                    <t t-if="ele['barcode']">
+                                        <span t-esc="ele['barcode']" t-options="{'widget': 'barcode', 'img_align': 'center','symbology': 'EAN13','width': 600, 'height': 100, 'img_style': 'width:12mm;height:5px;'}"/><br></br>
+                                    </t>
+                                    <t t-else="">
+                                        <span style="visibility:hidden;">zzzz</span>
+                                    </t>
+                                    <t t-if="ele['default_code']">
+                                        <span t-esc="ele['default_code']"/><br/>
+                                    </t>
+                                     <t t-else="">
+                                        <span style="visibility:hidden;">zzzz</span>
+                                    </t>
+                                    <t t-if="ele['list_price']">
+                                        <span t-esc="ele['list_price']"/>
+                                    </t>
+                                     <t t-else="">
+                                        <span style="visibility:hidden;">zzzz</span>
+                                    </t>
+                                     <t t-if="ele['currency_id']">
+                                        <span t-esc="ele['currency_id']"/>
+                                    </t>
+                                     <t t-else="">
+                                        <span style="visibility:hidden;">zzzz</span>
+                                    </t>
                                 </div>
                                   <div style="width: 50%; float:right;font-size:6px;">
-                                      <span t-esc="ele['name']"/><br/>
-                                      <span t-esc="ele['x_studio_net_weight_1']"/>
+
+                                        <t t-if="ele['name']">
+                                            <span t-esc="ele['name']"/><br/>
+                                        </t>
+                                         <t t-else="">
+                                            <span style="visibility:hidden;">zzzz</span>
+                                        </t>
+                                      <t t-if="ele['x_studio_net_weight_1']">
+                                            <span t-esc="ele['x_studio_net_weight_1']"/>
+                                        </t>
+                                         <t t-else="">
+                                             <span style="visibility:hidden;">zzzz</span>
+                                        </t>
                                   </div>
                             </div>
 
