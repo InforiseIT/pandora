@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
     list_price = fields.Float(string='Sales Price', digits=(16, 3))
 
     def action_barcode(self):
-        return self.env.ref('zb_pandora.action_report_barcode').report_action(self)
+        return self.env.ref('zb_pandora.report_barcode_pdf_qweb').report_action(self)
 
 
 
