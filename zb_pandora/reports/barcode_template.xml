@@ -8,20 +8,20 @@
                     <t t-foreach="product_obj" t-as="ele">
                             <div>
                                 <div style="width: 50%; float:left;font-size:6px;">
-                                    <t t-if="ele['barcode']">
-                                        <span t-esc="ele['barcode']" t-options="{'widget': 'barcode', 'img_align': 'center','symbology': 'EAN13','width': 600, 'height': 100, 'img_style': 'width:12mm;height:5px;'}"/><br></br>
+                                    <t t-if="ele['barcode']" >
+                                        <span t-esc="ele['barcode']" t-options="{'widget': 'barcode', 'img_align': 'center','symbology': 'EAN13','width': 600, 'height': 100, 'img_style': 'width:12mm;height:5px;'}"/><br/>
                                     </t>
                                     <t t-else="">
                                         <span style="visibility:hidden;">zzzz</span>
                                     </t>
                                     <t t-if="ele['default_code']">
-                                        <span t-esc="ele['default_code']"/><br/>
+                                        <span style="padding-left:3px !important; , padding-top:4px !important;" t-esc="ele['default_code']"/><br/>
                                     </t>
                                      <t t-else="">
                                         <span style="visibility:hidden;">zzzz</span>
                                     </t>
                                     <t t-if="ele['list_price']">
-                                        <span t-esc="ele['list_price']"/>
+                                        <span style="padding-left:3px !important;" t-esc="ele['list_price']"/>
                                     </t>
                                      <t t-else="">
                                         <span style="visibility:hidden;">zzzz</span>
