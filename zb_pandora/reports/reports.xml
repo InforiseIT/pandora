@@ -1,8 +1,28 @@
 <odoo>
 	<data>
 
+
+        <record id="paperformat_barcode_pdf_report" model="report.paperformat">
+            <field name="name">Product Barcode</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">10</field>
+            <field name="page_width">44</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">2</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">80</field>
+        </record>
+
+
+
+
       <!--barcode report -->
-		<record id="action_report_barcode" model="ir.actions.report">
+		<record id="report_barcode_pdf_qweb" model="ir.actions.report">
             <field name="name">Print Barcode</field>
             <field name="model">product.template</field>
             <field name="report_type">qweb-pdf</field>
@@ -11,6 +31,10 @@
 
             <field name="binding_model_id" ref="model_product_template"/>
             <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_barcode_pdf_qweb" model="ir.actions.report">
+            <field name="paperformat_id" ref="zb_pandora.paperformat_barcode_pdf_report"/>
         </record>
 
 
