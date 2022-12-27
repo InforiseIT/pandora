@@ -12,10 +12,28 @@ const PandaInOrderline = (Orderline) => class PandaInOrderline extends Orderline
     export_for_printing() {
         var line = super.export_for_printing(...arguments);
         line.default_code = this.get_product().default_code;
-        line.barcode = this.get_product().barcode;
+        line.tax_name = this.get_all_line_taxes();
         return line;
-
     }
+
+    get_all_line_taxes(qty = this.get_quantity()){
+        var price_unit = this.get_unit_price() * (1.0 - (this.get_discount() / 100.0));
+        var taxtotal = 0;
+        var tax_name = false;
+
+        var product =  this.get_product();
+        var taxes_ids = this.tax_ids || product.taxes_id;
+        taxes_ids = _.filter(taxes_ids, t => t in this.pos.taxes_by_id);
+
+        var product_taxes = this.pos.get_taxes_after_fp(taxes_ids, this.order.fiscal_position);
+        var all_taxes = this.compute_all(product_taxes, price_unit, qty, this.pos.currency.rounding);
+        _(all_taxes.taxes).each(function(tax) {
+            tax_name = tax.name;
+        });
+        return tax_name;
+    };
+
+
 }
 Registries.Model.extend(Orderline, PandaInOrderline);
 

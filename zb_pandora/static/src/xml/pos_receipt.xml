@@ -8,7 +8,6 @@
             <div class="pos-receipt">
                 <t t-if="receipt.company.logo">
                     <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"/>
-                    <br/>
                 </t>
                 <t t-if="!receipt.company.logo">
                     <h2 class="pos-receipt-center-align">
@@ -20,12 +19,15 @@
                     <t t-if="receipt.company.contact_address">
                         <div><t t-esc="receipt.company.contact_address" /></div>
                     </t>
+                    <t t-if="receipt.company.street">
+                        <div><t t-esc="receipt.company.street" /></div>
+                    </t>
                     <t t-if="receipt.company.phone">
                         <div>Tel:<t t-esc="receipt.company.phone" /></div>
                     </t>
-                    <t t-if="receipt.company.vat">
-                        <div><t t-esc="receipt.company.vat_label"/>:<t t-esc="receipt.company.vat" /></div>
-                    </t>
+<!--                    <t t-if="receipt.company.vat">-->
+<!--                        <div><t t-esc="receipt.company.vat_label"/>:<t t-esc="receipt.company.vat" /></div>-->
+<!--                    </t>-->
                     <t t-if="receipt.company.email">
                         <div><t t-esc="receipt.company.email" /></div>
                     </t>
@@ -102,6 +104,7 @@
 
 
                 <br/>
+                <div style="border-top: solid black;border-top-width: thin;"/>
 
 
                 <!-- Orderlines -->
@@ -130,25 +133,32 @@
                             </span>
                         </div>
                         <div>
-                            <span class="pos-left-align" style="font-size:12px;">VAT Total:
-
-                            </span>
-                            <span class="pos-receipt-right-align" style="font-size:12px;">
-                                <t t-esc="env.pos.format_currency_no_symbol(receipt.total_tax)"/>
-                            </span>
+                            <t t-if="isTaxIncluded">
+                                <t t-foreach="receipt.tax_details" t-as="tax" t-key="tax.name">
+                                    <span class="pos-left-align" style="font-size:12px;">
+                                     <t t-esc="tax.name" />
+                                    </span>
+                                    <span class="pos-receipt-right-align" style="font-size:12px;">
+                                        <t t-esc="env.pos.format_currency_no_symbol(tax.amount)"/>
+                                    </span>
+                                </t>
+                            </t>
+<!--                            <span class="pos-receipt-right-align" style="font-size:12px;">-->
+<!--                             -->
+<!--                                <t t-esc="env.pos.format_currency_no_symbol(receipt.total_tax)"/>-->
+<!--                            </span>-->
                         </div>
                         <div>
-                            <span class="pos-left-align" style="font-size:14px;"><b>Total Gross Amount:</b>
-
-                            </span>
+                            <span class="pos-left-align" style="font-size:14px;"><b>Total Gross Amount:</b></span>
                             <span>
                                 <t t-esc="total_qty"/>
                             </span>
                             <span class="pos-receipt-right-align" style="font-size:14px;">
                                 <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/>
                             </span>
-                        </div>
+                        </div><br/>
                     </div>
+                    <br/>
                     <div style="border-top: solid black;border-top-width: thin;">
                          <div style="padding-top:5px;font-size:12px;">
                             <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
@@ -172,6 +182,7 @@
                         <span style="font-size:13px;"><center>You were served by <t t-esc="receipt.cashier"/></center></span>
                         <span style="font-size:13px;"><center>You reserved rebate of <t t-esc='env.pos.format_currency(receipt.total_discount)'/></center></span>
                     </div>
+
                 </xpath>
 
                 <xpath expr="//div[hasclass('pos-receipt-amount')][2]" position="replace">
@@ -256,21 +267,24 @@
                         </td>
                         <td class="pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
                             <t t-if="line.default_code" t-esc="line.default_code"/>/
-                            <t t-if="line.barcode" t-esc="line.barcode"/>
+                            <t t-if="line.barcode">
+                                \ <t t-esc="line.barcode"/>
+                            </t>
+<!--                            <t t-if="line.barcode" t-esc="line.barcode"/>-->
                         </td>
                         <td class="pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
                             <t t-set="total_qty" t-value="line.quantity + total_qty" />
-                            <t t-esc="env.pos.format_currency_no_symbol(line.quantity)" /> x
+                            <t t-esc="line.quantity" /> x
                             <t t-if="line.unit_name" t-esc="line.unit_name" />
                         </td>
 
                         <td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
                             <span class="price_display pos-receipt-right-align">
-                                <t t-esc="env.pos.format_currency(line.price_display)" />
+                                <t t-esc="env.pos.format_currency(line.price_display_one)" />
                             </span>
                         </td>
                         <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
-                            <t t-esc="env.pos.format_currency_no_symbol(line.tax)" />
+                            <t t-esc="line.tax_name" />
                         </td>
                     </tr>
                 </t>
