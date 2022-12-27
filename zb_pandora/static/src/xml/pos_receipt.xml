@@ -22,6 +22,16 @@
                     <t t-if="receipt.company.street">
                         <div><t t-esc="receipt.company.street" /></div>
                     </t>
+                    <t t-if="receipt.company.street2">
+                        <div><t t-esc="receipt.company.street2" /></div>
+                    </t>
+                    <t t-if="receipt.company.city">
+                        <div>
+                            <span t-esc="receipt.company.city" />
+                            <span t-esc="receipt.company.state_id.name" />
+                            <span t-esc="receipt.company.country_id.name" />
+                        </div>
+                    </t>
                     <t t-if="receipt.company.phone">
                         <div>Tel:<t t-esc="receipt.company.phone" /></div>
                     </t>
@@ -84,12 +94,13 @@
                             <t t-else="">
                                 <b><t t-esc="receipt.date.validation_date" /></b>
                             </t>
-                        </span><br />
-<!--                        <span>-->
-<!--                            <t t-if="receipt.name">-->
-<!--                                <b><t t-esc="receipt.name.split('Order ')[1]" style="font-family: 'Libre Barcode 39';"/></b>-->
-<!--                            </t>-->
-<!--                        </span>-->
+                        </span><br /><br/>
+
+                        <div class="pos-receipt-center-align" style="margin-top:10px;">
+                            <div id="bcTarget" style="padding-left:0;margin-left: 0;"/>
+                        </div>
+
+
                     </div>
                      <t t-if="receipt.client">
 
@@ -156,13 +167,13 @@
                             <span class="pos-receipt-right-align" style="font-size:14px;">
                                 <t t-esc="env.pos.format_currency(receipt.total_with_tax)"/>
                             </span>
-                        </div><br/>
+                        </div>
                     </div>
                     <br/>
                     <div style="border-top: solid black;border-top-width: thin;">
-                         <div style="padding-top:5px;font-size:12px;">
+                         <div style="font-size:12px;">
                             <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
-                                <div style="font-size:13px;">
+                                <div style="font-size:13px;padding-top:10px;">
                                     <div class="pos-left-align">
                                         <t t-esc="line.name" style="font-size:13px;"/>
                                         <span t-esc="env.pos.format_currency_no_symbol(line.amount)" class="pos-receipt-right-align" />
@@ -274,8 +285,7 @@
                         </td>
                         <td class="pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
                             <t t-set="total_qty" t-value="line.quantity + total_qty" />
-                            <t t-esc="line.quantity" /> x
-                            <t t-if="line.unit_name" t-esc="line.unit_name" />
+                            <t t-esc="line.quantity" />
                         </td>
 
                         <td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">

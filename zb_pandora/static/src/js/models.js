@@ -13,6 +13,7 @@ const PandaInOrderline = (Orderline) => class PandaInOrderline extends Orderline
         var line = super.export_for_printing(...arguments);
         line.default_code = this.get_product().default_code;
         line.tax_name = this.get_all_line_taxes();
+        line.company_vals = this.get_company_details();
         return line;
     }
 
@@ -33,8 +34,28 @@ const PandaInOrderline = (Orderline) => class PandaInOrderline extends Orderline
         return tax_name;
     };
 
+    get_company_details(){
+        var company_data = false;
+        let company = this.pos.company;
+        console.log("-----", company);
+        var company_data = {
+            name : company.name,
+            mobile : company.mobile,
+            street : company.street,
+            street2 : company.street2,
+            city : company.city,
+            state_id : company.state_id,
+            zip : company.zip,
+            country_id : company.country_id,
 
-}
+            };
+        console.log("-----", company_data);
+        return company_data;
+    };
+
+    }
+
+
 Registries.Model.extend(Orderline, PandaInOrderline);
 
 });

@@ -15,6 +15,10 @@
             'point_of_sale.assets': [
                 'zb_pandora/static/src/xml/pos_receipt.xml',
                 'zb_pandora/static/src/js/models.js',
+                'zb_pandora/static/src/js/ReceiptScreen.js',
+                'zb_pandora/static/src/js/jquery-barcode.js',
+                'zb_pandora/static/src/js/ReprintReceiptScreen.js',
+
             ]
         },
 
