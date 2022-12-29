@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_periodic_sale_report_form" model="ir.ui.view">
+        <field name="name">Periodic Sales Report</field>
+        <field name="model">periodic.sales.reports</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Periodic Sales Report">
+                <group col="4" string="Dates">
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="user_ids" widget="many2many_tags" />
+                </group>
+                <footer>
+                    <button name="print_report" type="object" string="Print Report" class="btn-primary" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_report_periodic_sale" model="ir.actions.act_window">
+        <field name="name">Periodic Sales Report</field>
+        <field name="res_model">periodic.sales.reports</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_periodic_sale" name="Periodic Sales Report" action="action_report_periodic_sale" parent="point_of_sale.menu_point_rep" sequence="8" groups="point_of_sale.group_pos_manager" />
+    <!-- <menuitem id="menu_periodic_sale" string="Periodic Sales Report" parent="menu_pos_reports" sequence="7" />  -->
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+     
+
+        <!--  <record id="action_report_sales" model="ir.actions.report">
+            <field name="name">Sales Receipt</field>
+            <field name="model">wizard.pos.details</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_pos_reports.report_detailsofsales</field>
+            <field name="report_file">zb_pos_reports.report_detailsofsales</field>
+            <field name="binding_model_id" ref="model_account_payment"/>
+            <field name="binding_type">report</field>
+        </record> -->
+           
+           
+             <!-- **Quotation Report Paperformat** -->
+       <!--  <record id="paperformat_sales_details" model="report.paperformat">
+            <field name="name">European A4(Sales Details)</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+        </record>
+        
+        <record id="action_report_sales" model="ir.actions.report">
+			<field name="paperformat_id" ref="paperformat_sales_details"/>
+		</record> -->
+
+        <record id="report_periodicsaless" model="ir.actions.report">
+            <field name="name">Periodic Sales Report</field>
+            <field name="model">periodic.sales.reports"</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_pos_reports.report_periodic_saless</field>
+            <field name="report_file">zb_pos_reports.report_periodic_saless</field>
+            <field name="print_report_name">Sales Details</field>
+            <field name="binding_model_id" ref="base.model_res_users"/>
+            <field name="binding_type">report</field>
+        </record>
+
+         <record id="action_report_sales" model="ir.actions.report">
+            <field name="name">Sales Details</field>
+            <field name="model">wizard.pos.details</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_pos_reports.report_detailsofsales</field>
+            <field name="report_file">zb_pos_reports.report_detailsofsales</field>
+            <field name="print_report_name">Sales Details</field>
+            <field name="binding_model_id" ref="base.model_res_users"/>
+            <field name="binding_type">report</field>
+        </record>
+  
+
+        <record id="action_pos_session_report" model="ir.actions.report">
+            <field name="name">Session Summary Report</field>
+            <field name="model">pos.session</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_pos_reports.report_sessionsummary</field>
+            <field name="report_file">zb_pos_reports.report_sessionsummary</field>
+            <field name="print_report_name">'Session - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="point_of_sale.model_pos_session"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="report_receipt_pos_a4" model="ir.actions.report">
+            <field name="name">POS Receipt</field>
+            <field name="model">pos.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_pos_reports.report_receipt_a4</field>
+            <field name="report_file">zb_pos_reports.report_receipt_a4</field>
+            <field name="print_report_name">'Order - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+            <field name="binding_type">report</field>
+        </record>
+        <!--  ********Receipt Report Paperformat Custom********* -->
+		<record id="paperformat_receipt_a4" model="report.paperformat">
+			<field name="name">Point Of Sale Receipt(A4)</field>
+			<field name="default" eval="True"/>
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">20</field>
+			<field name="margin_left">10</field>
+			<field name="margin_right">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">130</field>
+		</record>
+        <record id="paperformat_receipt_customs" model="report.paperformat">
+            <field name="name">Point Of Sale Receipt</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">170</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">1</field>
+            <field name="margin_bottom">1</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">1</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">1</field>
+            <field name="dpi">130</field>
+        </record>
+        <record id="action_pos_session_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="zb_pos_reports.paperformat_receipt_customs"/>
+        </record>
+		
+		<record id="report_receipt_pos_a4" model="ir.actions.report">
+			<field name="paperformat_id" ref="zb_pos_reports.paperformat_receipt_a4"/>
+		</record>
+		
+</data>
+</odoo>

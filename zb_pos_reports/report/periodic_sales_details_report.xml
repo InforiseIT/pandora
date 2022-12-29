@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_periodic_saless">
+    <t t-call="web.html_container">
+        <t t-call="zb_pos_reports.external_layout_pos_reports">
+            <div class="page" style="font-size:14px;">
+            <br/>
+             <br/>
+                <h2>Periodic Sales Report</h2>
+	 		<t t-foreach="data" t-as="o">
+					 <div class="row mt32">
+						<div class="col-3">
+			                <strong>Company</strong>:<br/>
+			                <span t-esc="res_company.name"/>
+	            		</div>
+	            		<div class="col-3">
+					<strong>Users</strong>
+							:
+					<br/>
+					<span t-esc="get_user_names(o_value['user_ids']) or 'All'"/>
+					</div>
+						<div class="col-3">
+			                <strong>Print Date</strong>:<br/>
+			                <span t-esc="datetime.datetime.now()" t-options="{'widget': 'date'}" />
+	            		</div>
+	            		<div class="col-3">
+	           			</div>
+	           		</div>
+	           		<div class="row">
+						<div class="col-3">
+			                <strong>Start Period</strong>:<br/>
+			                 <span t-esc="o_value['start_date']" t-options="{'widget': 'date'}"></span>
+	            		</div>
+	            		<div class="col-3">
+			                <strong>End Period</strong>:<br/>
+			                	<span t-esc="o_value['end_date']" t-options="{'widget': 'date'}"></span>
+	            		</div>
+						<div class="col-3">
+	            		</div>
+	            		<div class="col-3">
+	           			</div> 
+	           		</div>
+	           	
+               <table class="table table-condensed">
+                    <thead>
+                        <th><strong>Date</strong></th>
+                        <th><strong>No of Transactions</strong></th>
+                        <th class="text-center"><strong>Qty</strong></th>
+                        <th class="text-center"><strong>Total Sales</strong></th>
+                        <th class="text-center"><strong>Total Untaxed Sales</strong></th>
+                        <th class="text-center"><strong>Cost</strong></th>
+                        <th class="text-center"><strong>VAT</strong></th>
+                        <th class="text-center"><strong>Profit</strong></th>
+                    </thead>
+                    <tbody>
+                    	<t t-set="total_qty" t-value="0"/>
+                       	<t t-set="total_sales" t-value="0"/>
+                       	<t t-set="total_cost" t-value="0"/>
+                       	<t t-set="total_profit" t-value="0"/>
+                       	<t t-set="total_vat" t-value="0"/>
+                       	<t t-set="total_untaxed_sales" t-value="0"/>
+                       <!--  <t t-foreach="pos_sales_details(data['form'])" t-as="line_ids"> -->
+                        	<tr t-foreach="statement_data" t-as="line">
+		                            <td>
+		                                <span t-esc="line_value['date_order']" t-options="{'widget': 'date'}"/>
+		                            </td>
+		                            <td>
+		                            	<span t-esc="line_value['trans_no']"/>
+		                            </td>
+		                            <td class="text-center">
+		                            	<span t-esc="int(line_value['qty'])"/>
+		                            	<t t-set="total_qty" t-value="total_qty+line_value['qty']"/>
+		                            </td>
+		                            <td class="text-center">
+		                            	<span t-esc="'%.3f' % line_value['total']"/>
+		                            	<t t-set="total_sales" t-value="total_sales+line_value['total']"/>
+		                            </td>
+		                           <td class="text-center">
+		                            	<span t-esc="'%.3f' %(line_value['total']-line_value['vat'])"/>
+		                            	<t t-set="total_untaxed_sales" t-value="total_untaxed_sales+(line_value['total']-line_value['vat'])"/>
+		                            </td>
+		                            <td class="text-center">
+		                            	 <span t-esc="'%.3f' % line_value['cost']"/>
+		                            	<t t-set="total_cost" t-value="total_cost + line_value['cost']"/> 
+		                            </td>
+		                             <td class="text-center">
+		                            	<span t-esc="'%.3f' % line_value['vat']"/>
+		                            	<t t-set="total_vat" t-value="total_vat+line_value['vat']"/>
+		                            </td>  
+		                             <td class="text-center">
+		                            	<span t-esc="'%.3f' % ((line_value['total']-line_value['vat'])-line_value['cost'])"/>
+		                            	<t t-set="total_profit" t-value="((line_value['total']-line_value['vat'])-line_value['cost'])"/>
+		                            	
+		                            </td>  
+		                           </tr> 
+                       <!--  </t> -->
+                    </tbody>
+                </table>
+                
+                    <table class="table table-condensed">
+                    <tr>
+                        <td colspan="2"><strong>Summary</strong></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Total Qty</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="int(total_qty)"/>
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td><strong>Total Vat</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="'{0:,.3f}'.format(total_vat)"/> <span t-esc="res_company.currency_id.symbol"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Sales</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="'{0:,.3f}'.format(total_sales)"/> <span t-esc="res_company.currency_id.symbol"/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Total Cost</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="'{0:,.3f}'.format(total_cost)"/> <span t-esc="res_company.currency_id.symbol"/>
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td><strong>Total Profit</strong></td>
+                        <td class="text-right">
+                           <strong t-esc="'{0:,.3f}'.format(total_untaxed_sales-total_cost)"/> <span t-esc="res_company.currency_id.symbol"/>
+                            <!-- <strong t-esc="'{0:,.3f}'.format(total_profit-total_vat)"/> <span t-esc="res_company.currency_id.symbol"/> -->
+                        </td>
+                    </tr>
+                </table>
+                
+            </t>
+        </div>
+ 
+   </t>
+  </t>
+</template>
+</odoo>
