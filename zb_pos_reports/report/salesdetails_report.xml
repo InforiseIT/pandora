@@ -223,57 +223,57 @@
 	                    <tr>
 	                        <td><strong>Qty of product</strong></td>
 	                        <td class="text-right">
-	                            <strong t-esc="'%.3f'%(total_qty)"/>
+	                            <strong t-esc="'%.3f'%(total_qty)" style="float:right;"/>
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <td><strong>Total VAT</strong></td>
 	                        <td class="text-right">
-	                            <strong t-esc="'%.3f'%(total_vat)"/>
+	                            <strong t-esc="'%.3f'%(total_vat)" style="float:right;"/>
 	                        </td>
 	                    </tr>
 	                   <tr>
 	                        <td><strong>Total Credit Invoiced</strong></td>
 	                        <td class="text-right">
-	                           <strong t-esc="'%.3f'%(getsuminvoice2)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+	                           <strong t-esc="'%.3f'%(getsuminvoice2)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                          <td><strong>Total discount</strong></td>
 	                    	  <td class="text-right">
-                               	  <strong t-esc="'%.3f'%(get_discount)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+                               	  <strong t-esc="'%.3f'%(get_discount)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
                            	</td>
 	                    </tr>
 	                  <tr>
 	                        <td><strong>Total Sales</strong></td>
 	                      <td class="text-right">
-                            <strong t-esc="'%.3f'%(total_payment)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+                            <strong t-esc="'%.3f'%(total_payment)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
                         </td>
 	                    </tr>
 					   <t t-if="o_value['is_visible']">
 							<tr>
 								<td><strong>Total cost</strong></td>
 								<td class="text-right">
-									<strong t-esc="'%.3f'%(total_cost)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+									<strong t-esc="'%.3f'%(total_cost)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
 								</td>
 							</tr>
 							<tr>
 								<td><strong>Total Profit</strong></td>
 								<td class="text-right">
-									<strong t-esc="'%.3f'%(total_payment-total_vat-total_cost)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+									<strong t-esc="'%.3f'%(total_payment-total_vat-total_cost)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
 								</td>
 							</tr>
 					   </t>
 	                   <tr>
 	                        <td><strong>Total Refund</strong></td>
 	                        <td class="text-right">
-	                            <strong t-esc="'%.3f'%(refund_total)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+	                            <strong t-esc="'%.3f'%(refund_total)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
 	                        </td>
 	                    </tr>
 	                  <tr>
 	                        <td><strong>Total of the day</strong></td>
 	                        <td class="text-right">
-	                            <strong t-esc="'%.3f'%(total_payment-writeoff)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+	                            <strong t-esc="'%.3f'%(total_payment-writeoff)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
 	                        </td>
 	                    </tr> 
 	                </table>
