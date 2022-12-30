@@ -21,6 +21,7 @@
         'report/pos_receipt_report.xml',
         'report/pos_session_report.xml',
         'views/session_view.xml',
+        'views/pos_report_menu.xml',
         'report/periodic_sales_details_report.xml',
     ],
     'test': [

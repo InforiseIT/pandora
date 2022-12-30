@@ -19,10 +19,18 @@ class PosDetailsReport(models.TransientModel):
     report_detail = fields.Selection([('normal', 'Normal'),
                                 ('detail', 'Detailed'),], 
                                'Report Type', default='normal')
+    is_visible = fields.Boolean(default=False)
 
+    @api.model
+    def default_get(self, field_list):
+        res = super().default_get(field_list)
+        if self.env.user.has_group('point_of_sale.group_pos_manager'):
+            res.update({
+                'is_visible': True,
+            })
+        return res
 
     def print_customer_statement(self):
-        
         datas = {
             'ids': self.ids,
             'form': self.read(),
