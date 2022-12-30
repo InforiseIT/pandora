@@ -353,7 +353,15 @@ class PosDetailsReport(models.AbstractModel):
         data = dict(data or {})
         config_list = []
         results = self._pos_sales_details(data['form'])
-        payment= self.get_payments(data['form'])
+        payment_data= self.get_payments(data['form'])
+        if payment_data:
+            for rec in payment_data:
+                for i in rec.keys():
+                    if i == 'name':
+                        for j in rec[i]:
+                            dict_data = rec[i][j]
+                            rec[i] = dict_data
+        payment = payment_data
         invoice=self._get_sum_invoice_2(data['form'])
         refund=self._get_reurn_total(data['form'])
         writeoff=self._get_write_off(data['form'])
