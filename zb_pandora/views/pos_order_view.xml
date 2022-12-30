@@ -13,6 +13,32 @@
                            groups="point_of_sale.group_pos_manager"
                     />
                 </xpath>
+
+
+
+                <xpath expr="//notebook/page[@name='products']/field/tree/field[@name='margin']" position='replace'>
+                    <field name="margin" attrs="{'invisible': [('is_total_cost_computed','=', False)]}"
+                           optional="hide" widget="monetary"  groups="point_of_sale.group_pos_manager"/>
+                </xpath>
+
+
+                <xpath expr="//notebook/page[@name='products']/field/tree/field[@name='margin_percent']" position='replace'>
+                    <field name="margin_percent" attrs="{'invisible': [('is_total_cost_computed','=', False)]}"
+                           optional="hide" widget="percentage" groups="point_of_sale.group_pos_manager"/>
+                </xpath>
+
+
+                 <xpath expr="//notebook/page[@name='products']//group[@name='order_total']//div[@class='text-nowrap']" position='replace'>
+                      <div class="text-nowrap">
+                         <field name="margin" class="oe_inline"
+                                attrs="{'invisible': [('is_total_cost_computed','=', False)]}" groups="point_of_sale.group_pos_manager"/>
+                            <span class="oe_inline" attrs="{'invisible': [('is_total_cost_computed','=', False)]}" groups="point_of_sale.group_pos_manager">
+                                (<field name="margin_percent" nolabel="1" class="oe_inline" widget="percentage"/>)
+                            </span>
+                            <span attrs="{'invisible': [('is_total_cost_computed','=', True)]}">TBD</span>
+                      </div>
+                </xpath>
+
             </field>
         </record>
 
