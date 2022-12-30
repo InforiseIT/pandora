@@ -25,6 +25,6 @@ class PosSession(models.Model):
 
 class PosConfig(models.Model):
     _inherit = 'pos.config'
-    #
-    # group_pos_cost_id = fields.Many2one('res.groups', string='show Cost Price Group', default=lambda self: self.env.ref('zb_pandora.group_product_cost'),
-    #     help='This field is there to pass the id of the pos margin group to the point of sale client.')
+
+    group_pos_cost_id = fields.Many2one('res.groups', string='show Cost Price Group', default=lambda self: self.env.ref('zb_pandora.group_product_cost'),
+        help='This field is there to pass the id of the pos margin group to the point of sale client.')
