@@ -205,10 +205,10 @@
 	                    </tr>
 	                    <t t-set="total_payment" t-value="0"/>
 	                     <tr t-foreach='payment_data' t-as='payment'>
-		                    <td><t t-esc="payment['name']" /></td>
+		                    <td><t t-esc="payment['name']" style="float:left;"/></td>
 		                    <td class="text-right">
-		                    	<t t-set="total_payment" t-value="total_payment+payment['sum']"/>
-		                    	 <strong t-esc="'%.3f'%(payment['sum'])"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+		                    	<t t-set="total_payment" t-value="total_payment+payment['sum']" style="float:right;"/>
+		                    	 <strong t-esc="'%.3f'%(payment['sum'])"  style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
 		                    </td>
 	                	</tr>
 	                    <tr>
@@ -217,7 +217,7 @@
 	                    <tr>
 	                      <td><strong>Sales total(Revenue)</strong></td>
                     	   <td class="text-right">
-                    		 <strong t-esc="'%.3f'%(total_payment-total_vat)"/>&#160;<strong t-esc="res_company.currency_id.symbol"></strong>
+                    		 <strong t-esc="'%.3f'%(total_payment-total_vat)" style="float:right;"/>&#160;<strong t-esc="res_company.currency_id.symbol" style="float:right;"/>
                     	  </td>
 	                    </tr>
 	                    <tr>
