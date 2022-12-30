@@ -16,8 +16,8 @@
                     <br/>
                 </t>
                 <div class="pos-receipt-contact">
-                    <t t-if="receipt.company.contact_address">
-                        <div><t t-esc="receipt.company.contact_address" /></div>
+                    <t t-if="receipt.company.name">
+                        <div><t t-esc="receipt.company.name" /></div>
                     </t>
                     <t t-if="receipt.company.street">
                         <div><t t-esc="receipt.company.street" /></div>
@@ -27,23 +27,31 @@
                     </t>
                     <t t-if="receipt.company.city">
                         <div>
-                            <span t-esc="receipt.company.city" />
-                            <span t-esc="receipt.company.state_id.name" />
-                            <span t-esc="receipt.company.country_id.name" />
+                            <span t-esc="receipt.company.city" />,
+                            <span t-esc="receipt.company.zip" />,
+                            <span t-esc="receipt.company.country_id" />
+                            <!-- <span t-esc="receipt.company.state_id.name" /> -->
+                            <!-- <span t-esc="receipt.company.country_id.name" /> -->
                         </div>
                     </t>
+                   <br/>
                     <t t-if="receipt.company.phone">
                         <div>Tel:<t t-esc="receipt.company.phone" /></div>
+                    </t>
+                    <t t-if="receipt.company.vat">
+                        <div>VAT ID:<t t-esc="receipt.company.vat" /></div>
                     </t>
 <!--                    <t t-if="receipt.company.vat">-->
 <!--                        <div><t t-esc="receipt.company.vat_label"/>:<t t-esc="receipt.company.vat" /></div>-->
 <!--                    </t>-->
-                    <t t-if="receipt.company.email">
+                    <!-- <t t-if="receipt.company.email">
                         <div><t t-esc="receipt.company.email" /></div>
-                    </t>
-                    <t t-if="receipt.company.website">
+                    </t> -->
+                    <!-- <t t-if="receipt.company.website">
                         <div><t t-esc="receipt.company.website" /></div>
-                    </t>
+
+                    </t> -->
+                    <br/>
                     <t t-if="receipt.header_html">
                         <t t-out="receipt.header_html" />
                     </t>
@@ -52,29 +60,8 @@
                     </t>
 
                 </div>
-                <br /><br />
-
-                <xpath expr="//div[hasclass('pos-receipt-contact')]" position="before">
-                    <t t-if="receipt.company.vat">
-                        <div style="font-size:12px;" class="pos-receipt-center-align">
-                            Phone No:
-                            <t t-if='receipt.company.phone'>
-                                <t t-esc="receipt.company.phone" />
-                            </t>
-                            <t t-else=' '>
-                                <t t-esc="receipt.company.mobile" />
-                            </t>
-                            <br/>
-                            VAT ID:
-                            <t t-esc="receipt.company.vat" />
-                        </div>
-                    </t>
-                </xpath>
-
                 <br/>
-
-                <xpath expr="//div[hasclass('orderlines')]" position="before">
-                    <div  class="pos-center-align" style="padding-top:10px;font-weight: bold;text-decoration:underline;
+                <div  class="pos-center-align" style="padding-top:10px;font-weight: bold;text-decoration:underline;
                     padding-bottom:10px;border-bottom:2px;border-top:2px;padding-left:0;padding-right:5px;font-size:15px;">
                         TAX  Invoice
                     </div>
@@ -83,10 +70,10 @@
                             <t t-if="receipt.partner">
                                 <t t-esc="receipt.partner.name" style="font-size:13px;"/>
                             </t>
-                        </span><br /><br/>
-                        <span><b>Receipt NO: </b>
+                        </span><br />
+                        <span><b>Receipt No: </b>
                             <b><t t-esc="receipt.name.split('Order ')[1]" /></b>
-                        </span><br /><br />
+                        </span><br />
                         <span><b>Date: </b>
                             <t t-if="receipt.date.localestring">
                                 <b><t t-esc="receipt.date.localestring" /></b>
@@ -102,7 +89,7 @@
 
 
                     </div>
-                     <t t-if="receipt.client">
+                     <!-- <t t-if="receipt.client">
 
                         <div class="pos-receipt-left-align" style="padding-top:10px;
                     padding-bottom:10px;border-bottom:2px dotted #ccc;border-top:2px dotted #ccc;padding-left:0;padding-right:5px;font-size:12px;">
@@ -110,7 +97,30 @@
                             <t t-esc="receipt.client.name" />
                         </div>
 
+                    </t> -->
+                <!-- <br /><br /> -->
+
+                <!-- <xpath expr="//div[hasclass('pos-receipt-contact')]" position="before">
+                    <t t-if="receipt.company.vat">
+                        <div style="font-size:12px;" class="pos-receipt-center-align">
+                            Phone No:
+                            <t t-if='receipt.company.phone'>
+                                <t t-esc="receipt.company.phone" />
+                            </t>
+                            <t t-else=' '>
+                                <t t-esc="receipt.company.mobile" />
+                            </t>
+                            <br/>
+                            VAT ID:
+                            <t t-esc="receipt.company.vat" />
+                        </div>
                     </t>
+                </xpath> -->
+
+                <br/>
+
+                <xpath expr="//div[hasclass('orderlines')]" position="before">
+
                 </xpath>
 
 
@@ -173,16 +183,16 @@
                     <div style="border-top: solid black;border-top-width: thin;">
                          <div style="font-size:12px;">
                             <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
-                                <div style="font-size:13px;padding-top:10px;">
+                                <div style="font-size:14px;padding-top:10px;">
                                     <div class="pos-left-align">
-                                        <t t-esc="line.name" style="font-size:13px;"/>
-                                        <span t-esc="env.pos.format_currency_no_symbol(line.amount)" class="pos-receipt-right-align" />
+                                        <span t-esc="line.name" style="font-size:14px;font-weight:bold;text-transform:capitalize;"/>
+                                        <span t-esc="env.pos.format_currency(line.amount)" class="pos-receipt-right-align" />
                                     </div>
                                 </div>
                             </t>
                         </div>
                         <div>
-                            <div style="border-bottom:2px ccc;padding-left:0;padding-right:5px;font-size:14px;">
+                            <div style="border-bottom:2px ccc;padding-left:0;padding-right:1px;font-size:14px;">
                                 <div class="pos-left-align"><b>Change</b><span t-esc="env.pos.format_currency(receipt.change)" class="pos-receipt-right-align" /></div>
                             </div>
                         </div>
@@ -193,7 +203,16 @@
                         <span style="font-size:13px;"><center>You were served by <t t-esc="receipt.cashier"/></center></span>
                         <span style="font-size:13px;"><center>You reserved rebate of <t t-esc='env.pos.format_currency(receipt.total_discount)'/></center></span>
                     </div>
+                    <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
+                        <t t-out="receipt.footer_html" />
+                    </div>
 
+                    <div t-if="!receipt.footer_html and receipt.footer"  class="pos-receipt-center-align" style="white-space:pre-line">
+                        <br/>
+                        <t t-esc="receipt.footer" />
+                        <br/>
+                        <br/>
+                    </div>
                 </xpath>
 
                 <xpath expr="//div[hasclass('pos-receipt-amount')][2]" position="replace">
@@ -277,10 +296,10 @@
                             </t>
                         </td>
                         <td class="pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
-                            <t t-if="line.default_code" t-esc="line.default_code"/>/
                             <t t-if="line.barcode">
-                                \ <t t-esc="line.barcode"/>
-                            </t>
+                                 <t t-esc="line.barcode"/>
+                            </t> / <t t-if="line.default_code" t-esc="line.default_code"/>
+
 <!--                            <t t-if="line.barcode" t-esc="line.barcode"/>-->
                         </td>
                         <td class="pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">

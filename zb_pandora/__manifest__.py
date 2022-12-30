@@ -13,14 +13,12 @@
     'website': "http://zbeanztech.com/",
     'assets': {
             'point_of_sale.assets': [
-                'zb_pandora/static/src/xml/pos_receipt.xml',
-                'zb_pandora/static/src/js/models.js',
-                'zb_pandora/static/src/js/ReceiptScreen.js',
-                'zb_pandora/static/src/js/jquery-barcode.js',
-                'zb_pandora/static/src/js/ReprintReceiptScreen.js',
+                'zb_pandora/static/src/xml/**/*',
+                'zb_pandora/static/src/js/**/*',
 
             ]
         },
+
 
     'category': 'Uncategorized',
     'version': '16.00.01',
@@ -31,10 +29,12 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
         'reports/barcode_template.xml',
         'reports/reports.xml',
         'views/product_view.xml',
         'views/pos_order_view.xml',
+
 
     ],
 

@@ -17,8 +17,8 @@ odoo.define('static.ReceiptScreen', function(require) {
                 console.log(order,'-->orrrrr')
                 const order_id = order.uid
                 const barcode_value = order_id.split('Order')
-                console.log(barcode_value,'-->barcode_value')
-                console.log(barcode_value[0],'-->55')
+                // console.log(barcode_value,'-->barcode_value')
+                // console.log(barcode_value[0],'-->55')
                 $("#bcTarget").barcode(barcode_value[0], "code128", { barWidth: 1.5, fontSize: 14, barHeight: 25})
                 return this.env.pos.config.iface_print_auto && !this.currentOrder._printed;
             }
