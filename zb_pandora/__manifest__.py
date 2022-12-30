@@ -26,7 +26,7 @@
     'version': '16.00.01',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account', 'point_of_sale', 'website', 'purchase', 'sale', 'web',
+    'depends': ['base', 'point_of_sale',
                 ],
 
     # always loaded
@@ -34,6 +34,7 @@
         'reports/barcode_template.xml',
         'reports/reports.xml',
         'views/product_view.xml',
+        'views/pos_order_view.xml',
 
     ],
 

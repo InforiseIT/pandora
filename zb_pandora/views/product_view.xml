@@ -9,6 +9,13 @@
                 <button name="action_update_quantity_on_hand" position="after">
                     <button name="action_barcode" string="PRINT BARCODE" type="object"/>
                 </button>
+
+                <xpath expr="//page[@name='general_information']//field[@name='standard_price']" position="replace">
+                    <field name="standard_price" class="oe_inline" widget='monetary'
+                           options="{'currency_field': 'cost_currency_id', 'field_digits': True}"
+                            groups="point_of_sale.group_pos_manager"/>
+                </xpath>
+
             </field>
         </record>
     </data>

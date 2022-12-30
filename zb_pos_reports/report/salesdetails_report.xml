@@ -57,7 +57,9 @@
 		                        	<th class="text-center" style="width:2cm;"><strong>Cost</strong></th>
 								</t>
 		                        <th class="text-center" style="width:2cm;"><strong>Disc(%)</strong></th>
-		                        <th class="text-center"><strong>Profit</strong></th>
+								<t t-if="o_value['is_visible']">
+		                        	<th class="text-center"><strong>Profit</strong></th>
+								</t>
 		                    </thead>
 	                    	 <tbody>
 		                    	<t t-set="total_profit" t-value="0"/>
@@ -120,11 +122,13 @@
 	                           		 	<t t-set="total_discount" t-value="total_discount+d['discount']"/>
 	                           		 	<span t-esc="res_company.currency_id.symbol"/><t t-esc="'%.3f'%(d['discount'])"/>
 	                           		  </td>
-	                           		 <td class="text-center">
-	                           		 	<t t-set="total_profit" t-value="total_profit+d['profit']"/>
-		                            	<span t-esc="res_company.currency_id.symbol"/><span t-esc="'%.3f'%(d['profit'])"/>
-		                                
-	                    			</td>
+									<t t-if="o_value['is_visible']">
+										 <td class="text-center">
+											<t t-set="total_profit" t-value="total_profit+d['profit']"/>
+											<span t-esc="res_company.currency_id.symbol"/><span t-esc="'%.3f'%(d['profit'])"/>
+
+										</td>
+									</t>
 		                    	</tr>
 		                    </tbody> 
 		           		</table>
@@ -142,8 +146,8 @@
 		                        <th class="text-center"><strong>Total[w/o VAT]</strong></th>
 								<t t-if="o_value['is_visible']">
 		                        	<th class="text-center"><strong>Cost</strong></th>
+									<th class="text-center"><strong>Profit</strong></th>
 								</t>
-		                        <th class="text-center"><strong>Profit</strong></th>
 		                        <th class="text-center"><strong>VAT Amount</strong></th>
 		                        <th class="text-center"><strong>Total</strong></th>
 		                    </thead>
@@ -179,15 +183,16 @@
 	                           		 	<span t-esc="res_company.currency_id.symbol"/><t t-esc="'%.3f'%(dat['sub_total'])"/>
 	                    			</td>
 									<t t-if="o_value['is_visible']">
-										  <td class="text-right">
+										<td class="text-right">
 											<t t-set="total_cost" t-value="total_cost+dat['cost']"/>
 											<span t-esc="res_company.currency_id.symbol"/><t t-esc="'%.3f'%(dat['cost'])"/>
-										 </td>
+										</td>
+										<td class="text-right">
+                               				<t t-set="total_profit" t-value="total_profit+dat['profit']"/>
+		                                	<span t-esc="res_company.currency_id.symbol"/> <span t-esc="'%.3f'%(dat['profit'])"/>
+	                           		 	</td>
 									</t>
-	                           		  <td class="text-right">
-                               			<t t-set="total_profit" t-value="total_profit+dat['profit']"/>
-		                                <span t-esc="res_company.currency_id.symbol"/> <span t-esc="'%.3f'%(dat['profit'])"/>
-	                           		 </td>
+
 									<td class="text-center">		
 	                           		 	<span t-esc="'%.3f'%(dat['vat_amount'])"/>
 	                    			</td>

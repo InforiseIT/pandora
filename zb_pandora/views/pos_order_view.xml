@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="view_pos_order_form" model="ir.ui.view">
+            <field name="name">pos.order.form.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='products']/field/tree/field[@name='total_cost']" position='replace'>
+                    <field name="total_cost"
+                           attrs="{'invisible': [('is_total_cost_computed','=', False)]}"
+                           optional="hide" widget="monetary"
+                           groups="point_of_sale.group_pos_manager"
+                    />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="pos_payment_method_inherit_form" model="ir.ui.view">
+            <field name="name">pos.payment.method.form.inherit</field>
+            <field name="model">pos.payment.method</field>
+            <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="is_credit_sale"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

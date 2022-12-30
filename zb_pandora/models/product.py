@@ -1,6 +1,7 @@
 from odoo import api, fields, models, _
 from odoo.tools.misc import get_lang
 import logging
+
 _logger = logging.getLogger(__name__)
 
 
@@ -12,6 +13,4 @@ class ProductTemplate(models.Model):
 
     def action_barcode(self):
         return self.env.ref('zb_pandora.report_barcode_pdf_qweb').report_action(self)
-
-
 
