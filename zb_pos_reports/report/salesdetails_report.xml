@@ -283,9 +283,9 @@
 	          				<span t-field="request.env.user.name" />
 	          			</t>
 	      			</div>
-	      			<div class="row">
-	               		<strong>Revised By: </strong><span>.........................</span>
-	      			</div>
+						<span><strong >Revised By: </strong></span>
+						<span>.........................</span>
+
 	      			</t>
 	      		</div>
 	      		</t>
