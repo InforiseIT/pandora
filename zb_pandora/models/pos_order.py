@@ -14,4 +14,5 @@ class PosPaymentMethod(models.Model):
     _inherit = "pos.payment.method"
     _description = "POS Payment Method"
 
-    is_credit_sale = fields.Boolean(string='Credit Sale',default=False, copy=False)
+    is_credit_sale = fields.Boolean(string='Credit Sale',default=False, copy=False,
+                                    help='This field is to check Customer is Selected or not for credit Sales Process')

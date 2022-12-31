@@ -4,7 +4,6 @@ from odoo import api, fields, models, _
 
 class PosSession(models.Model):
     _inherit = 'pos.session'
-    
 
     def _loader_params_res_company(self):
         result = super()._loader_params_res_company()
@@ -15,12 +14,12 @@ class PosSession(models.Model):
         user = self.env['res.users'].search_read(**params['search_params'])[0]
         user['role'] = 'manager' if any(id == self.config_id.group_pos_manager_id.id for id in user['groups_id']) else 'cashier'
         # del user['groups_id']
-        print (user,'sdsds')
         return user
-    # def _loader_params_pos_config(self):
-    #     result = super()._loader_params_pos_config()
-    #     result['search_params']['fields'].append('group_pos_cost_id')
-    #     return result
+
+    def _loader_params_pos_payment_method(self):
+        result = super()._loader_params_pos_payment_method()
+        result['search_params']['fields'].append('is_credit_sale')
+        return result
 
 
 class PosConfig(models.Model):

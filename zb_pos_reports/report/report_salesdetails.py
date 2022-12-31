@@ -137,7 +137,14 @@ class ReportSaleDetails(models.AbstractModel):
 
     def _get_report_values(self, docids, data=None):
         data = dict(data or {})
+        data.update({
+            'session_ids': data.get('session_ids') or docids,
+            'config_ids': data.get('config_ids'),
+            'date_start': data.get('date_start'),
+            'date_stop': data.get('date_stop')
+        })
         configs = self.env['pos.config'].browse(data['config_ids'])
         data.update(self.get_sale_details(data['date_start'], data['date_stop'], configs.ids))
-        
         return data
+
+
