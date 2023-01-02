@@ -61,9 +61,10 @@
 
                 </div>
                 <br/>
-                <div  class="pos-center-align" style="padding-top:10px;font-weight: bold;text-decoration:underline;
-                    padding-bottom:10px;border-bottom:2px;border-top:2px;padding-left:0;padding-right:5px;font-size:15px;">
-                        TAX  Invoice
+                <div  class="pos-center-align" style="padding-top:10px;font-weight: bold;
+                    padding-bottom:10px;border-top:2px;padding-left:0;padding-right:5px;font-size:15px;">
+                    <span style="border-bottom: 1px solid black;">Tax  Invoice</span>
+
                     </div>
                     <div class="pos-left-align" style="font-size:12px;">
                         <span>Client:
@@ -150,7 +151,7 @@
 
                             </span>
                             <span class="pos-receipt-right-align" style="font-size:12px;">
-                                <t t-esc="env.pos.format_currency_no_symbol(receipt.total_without_tax)"/>
+                                <t t-esc="env.pos.format_currency(receipt.total_without_tax)"/>
                             </span>
                         </div>
                         <div>
@@ -160,7 +161,7 @@
                                      <t t-esc="tax.name" />
                                     </span>
                                     <span class="pos-receipt-right-align" style="font-size:12px;">
-                                        <t t-esc="env.pos.format_currency_no_symbol(tax.amount)"/>
+                                        <t t-esc="env.pos.format_currency(tax.amount)"/>
                                     </span>
                                 </t>
                             </t>
@@ -305,6 +306,7 @@
                         <td class="pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
                             <t t-set="total_qty" t-value="line.quantity + total_qty" />
                             <t t-esc="line.quantity" />
+                            <t t-if="line.unit_name" t-esc="line.unit_name" />
                         </td>
 
                         <td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
