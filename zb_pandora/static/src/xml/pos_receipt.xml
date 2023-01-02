@@ -255,10 +255,10 @@
                 </colgroup>
                 <tr >
                     <td class="pos-left-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc; padding-top:10px;padding-bottom:10px;font-weight:bold;">POS</td>
-                    <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Description</td>
+                    <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Desc</td>
                     <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Art No/Ref No</td>
                     <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Qty</td>
-                    <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Price</td>
+                    <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Unit Price</td>
                     <td class="pos-right-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">VAT</td>
                     <t t-set="total_qty" t-value="0" />
                     <t t-set="sl_no" t-value="0" />
