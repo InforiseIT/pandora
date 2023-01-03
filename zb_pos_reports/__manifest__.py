@@ -15,7 +15,7 @@
         'security/ir.model.access.csv',
         'wizard/pos_details.xml',
         'wizard/wizard_periodic_report.xml',
-        'report/layouts.xml',
+        # 'report/layouts.xml',
         'views/report_details_view.xml',
         'report/salesdetails_report.xml',
         'report/pos_receipt_report.xml',
