@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_periodic_details_wizard,access.periodic.sales.reports,model_periodic_sales_reports,,1,1,1,0
+access_wizard_pos_details,access.wizard.pos.details,model_wizard_pos_details,,1,1,1,0

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_session_summary_document">
+        <t t-call="zb_pos_reports.external_layout_report">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.config_id.company_id.partner_id.lang)" />
+            <div class="page">
+                <div class="oe_structure" />
+                <center><img alt="set company logo" t-attf-src="data:image/gif;base64, #{doc.config_id.company_id.logo}" style="max-height: 150px; max-width: 200px;"/></center>
+                <br /> <br />
+                <div class="row">
+                    <div class="col-12">
+                        <strong>Session: </strong> <span t-field="doc.name" />
+                        <br />
+                        <p><strong>Responsible: </strong> <span t-field="doc.user_id" /></p>
+                    </div>
+                </div>
+                <br />
+                <div class="row" id="informations">
+                    <div class="col-12">
+                        <strong>Opening Date :</strong> <span t-field="doc.start_at" />
+                    </div>
+                </div>
+                <br />
+                <div class="row" id="informations">
+                    <div t-if="doc.stop_at" class="col-12">
+                        <strong>Closing Date :</strong>
+                        <span t-field="doc.stop_at" />
+                    </div>
+                </div>
+                <br />
+                <t t-if="doc.config_id.cash_control">
+                    <div class="row" id="informations">
+                        <div class="col-12">
+                            <strong>Opening :</strong>
+                            <span t-field="doc.cash_register_balance_start" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" id="informations">
+                        <div class="col-12">
+                            <strong>Closing :</strong>
+                            <span t-field="doc.cash_register_balance_end_real" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" id="informations">
+                        <div name="payment_term" t-if="doc.cash_register_difference" class="col-12">
+                            <strong> Difference :</strong>
+                            <span t-field="doc.cash_register_difference" />
+                        </div>
+                    </div>
+                </t>
+                <div class="row" id="informations">
+                    <div name="payment_term" class="col-12">
+                        <strong>Total Sales Amount :</strong>
+                        <span t-field="doc.total_sale_amt" />
+                    </div>
+                </div>
+                <!--            Summary by Payment Methods
+ -->
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <h4>Summary by Payment Methods</h4>
+                        </center>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <th class="text-left">Journal</th>
+                                    <th class="text-right">Amount</th>
+                                </tr>
+                                <tr t-foreach="doc.payment_method_ids" t-as="payment">
+                                    <td><span t-field="payment.name" /></td>
+                                    <td class="text-right">
+                                        <span t-esc="doc.get_payment_amount(payment)" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="external_layout_report">
+        <!-- Multicompany -->
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc" />
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()" />
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company" />
+        </t>
+        <t t-call="zb_pos_reports.external_session_layout_standard">
+            <t t-raw="0" />
+        </t>
+    </template>
+    <template id="external_session_layout_standard">
+        <div class="header">
+            <div class="row">
+                <!--                        <img t-if="company.header_image"  t-att-src="'data:image/png;base64,%s' %to_text(company.header_image)" style="max-height:140px;max-width:100000px"/>
+ -->
+            </div>
+        </div>
+        <div class="article o_report_layout_standard">
+            <t t-raw="0" />
+        </div>
+        <div class="footer">
+            <div class="row">
+                <!--   <img t-if="company.footer_image"  t-att-src="'data:image/png;base64,%s' %to_text(company.footer_image)" style="height:2cm"/> -->
+            </div>
+        </div>
+    </template>
+    <template id="report_sessionsummary">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="lang" t-value="doc.config_id.company_id.partner_id.lang" />
+                <t t-call="zb_pos_reports.report_session_summary_document" t-lang="lang" />
+            </t>
+        </t>
+    </template>
+</odoo>
