@@ -41,8 +41,8 @@
                                          <t t-else="">
                                             <span style="visibility:hidden;">zzzz</span>
                                         </t>
-                                      <t t-if="ele['x_studio_net_weight_1']">
-                                            <span t-esc="ele['x_studio_net_weight_1']"/>
+                                      <t t-if="ele['x_studio_net_weight']">
+                                            <span t-esc="ele['x_studio_net_weight']"/>
                                         </t>
                                          <t t-else="">
                                              <span style="visibility:hidden;">zzzz</span>

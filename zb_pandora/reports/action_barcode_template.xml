@@ -63,7 +63,7 @@
                                  <span  t-field="doc.name"/><br></br>
                              </t>
                              <t t-foreach="docs" t-as="doc">
-                                <span  t-field="doc.x_studio_net_weight_1"/>
+                                <span  t-field="doc.x_studio_net_weight"/>
                              </t>
                       </p>
               </div>
