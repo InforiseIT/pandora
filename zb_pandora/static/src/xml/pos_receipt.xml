@@ -308,17 +308,32 @@
                             <t t-set="total_qty" t-value="line.quantity + total_qty" />
                             <t t-esc="line.quantity" />
                             <t t-if="line.unit_name" t-esc="line.unit_name" />
-                            <t t-set="pro_unit" t-value="line.unit_name"/>
+                            <t t-if="line.unit_name" t-set="pro_unit" t-value="line.unit_name"/>
                         </td>
 
-                        <td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
-                            <span class="price_display pos-receipt-right-align">
-                                <t t-esc="env.pos.format_currency(line.price_display_one)" />
-                            </span>
-                        </td>
-                        <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
-                            <t t-esc="line.tax_name" />
-                        </td>
+                        <t t-if="line.price_display_one">
+                            <td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
+                                <span class="price_display pos-receipt-right-align">
+                                    <t t-esc="env.pos.format_currency(line.price_display_one)" />
+                                </span>
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
+                                Nill
+                            </td>
+                        </t>
+
+                        <t t-if="line.tax_name">
+                            <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
+                                <t t-esc="line.tax_name" />
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
+                                Nill
+                            </td>
+                        </t>
                     </tr>
                 </t>
             </table>
