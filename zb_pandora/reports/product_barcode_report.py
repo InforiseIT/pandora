@@ -24,7 +24,7 @@ class BarcodeReport(models.AbstractModel):
                 'list_price': obj.list_price,
                 'currency_id':obj.currency_id.name,
                 'name': s_wrapped,
-                'x_studio_net_weight_1':obj.x_studio_net_weight_1,
+                'x_studio_net_weight':obj.x_studio_net_weight,
             }
             product_obj.append(vals)
 
