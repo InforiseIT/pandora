@@ -320,7 +320,7 @@
                         </t>
                         <t t-else="">
                             <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
-                                Nill
+
                             </td>
                         </t>
 
@@ -331,7 +331,7 @@
                         </t>
                         <t t-else="">
                             <td class="price_display pos-center-align" style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
-                                Nill
+
                             </td>
                         </t>
                     </tr>
