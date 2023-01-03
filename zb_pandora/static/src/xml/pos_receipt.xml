@@ -261,6 +261,7 @@
                     <td class="pos-center-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">Unit Price</td>
                     <td class="pos-right-align" style="border-bottom:2px;border-top: thick double;border-top:2px none #ccc;padding-top:10px;padding-bottom:10px;font-weight:bold;">VAT</td>
                     <t t-set="total_qty" t-value="0" />
+                    <t t-set="pro_unit" t-value=""/>
                     <t t-set="sl_no" t-value="0" />
                 </tr>
                 <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
@@ -307,6 +308,7 @@
                             <t t-set="total_qty" t-value="line.quantity + total_qty" />
                             <t t-esc="line.quantity" />
                             <t t-if="line.unit_name" t-esc="line.unit_name" />
+                            <t t-set="pro_unit" t-value="line.unit_name"/>
                         </td>
 
                         <td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
@@ -321,7 +323,14 @@
                 </t>
             </table>
 
-
+            <div style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top: solid black;border-top-width: thin;">
+                <span class="pos-left-align" style="font-size:12px;">Total Quantity:
+                </span>
+                <span class="pos-receipt-right-align" style="font-size:12px;">
+                    <t t-esc="total_qty"/>
+                    <t t-esc="pro_unit"/>
+                </span>
+            </div>
 
         </xpath>
     </t>
