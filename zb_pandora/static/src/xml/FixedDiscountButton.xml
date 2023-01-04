@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+   <!--  <t t-name="DiscountButton" t-inherit="pos_discount.DiscountButton" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('js_discount')]" position="replace">
+            <t t-jquery="span[class='control-button js_discount']" t-operation="replace">
+            <span class="control-button js_discount">
+                <i class="fa fa-tag"></i>
+                <span> </span>
+                <span>Discount %</span>
+            </span>
+        </xpath>
+    </t> -->
+    <t t-name="FixedDiscountButton" owl="1">
+        <span class="control-button js_fixed_discount">
+            <i class="fa fa-tag" />
+            <span> </span>
+            <span>Discount</span>
+        </span>
+    </t>
+</templates>
