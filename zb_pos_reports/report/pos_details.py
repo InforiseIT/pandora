@@ -419,8 +419,3 @@ class PosDetailsReport(models.AbstractModel):
         return docargs
 
 
-class Company(models.Model):
-    _inherit = 'res.company'
-
-    header_image = fields.Binary(string="Header Image")
-    footer_image = fields.Binary(string="Footer Image")
