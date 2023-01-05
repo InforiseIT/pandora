@@ -43,28 +43,28 @@
 	</template>
 
 
-	<template id="inherit_standard_external_layout" inherit_id="web.external_layout_standard">
-    <xpath expr="//div[contains(@t-attf-class, 'header o_company_#{company.id}_layout')]" position="replace">
-      <div t-attf-class="header o_company_#{company.id}_layout">
-        <div class="row" >
-          <div class="col-12" style="padding-left: 40%;">
-            <img t-if="company.header_image" t-att-src="image_data_uri(company.header_image)" style="max-height:170px;width:40%"  alt="Header"/>
-          </div>
-        </div>
-      </div>
-    </xpath>
+<!--	<template id="inherit_standard_external_layout" inherit_id="web.external_layout_standard">-->
+<!--    <xpath expr="//div[contains(@t-attf-class, 'header o_company_#{company.id}_layout')]" position="replace">-->
+<!--      <div t-attf-class="header o_company_#{company.id}_layout">-->
+<!--        <div class="row" >-->
+<!--          <div class="col-12" style="padding-left: 40%;">-->
+<!--            <img t-if="company.header_image" t-att-src="image_data_uri(company.header_image)" style="max-height:170px;width:40%"  alt="Header"/>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </xpath>-->
 
 
-    <xpath expr="//div[contains(@t-attf-class, 'footer o_standard_footer o_company_#{company.id}_layout')]" position="replace">
-      <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
-        <div class="row">
-          <div class="col-12" style="padding:0 !important;">
-            <img t-if="company.footer_image" t-att-src="image_data_uri(company.footer_image)" style="width:100%;"/>
-          </div>
-        </div>
-      </div>
-    </xpath>
-  </template>
+<!--    <xpath expr="//div[contains(@t-attf-class, 'footer o_standard_footer o_company_#{company.id}_layout')]" position="replace">-->
+<!--      <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">-->
+<!--        <div class="row">-->
+<!--          <div class="col-12" style="padding:0 !important;">-->
+<!--            <img t-if="company.footer_image" t-att-src="image_data_uri(company.footer_image)" style="width:100%;"/>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </xpath>-->
+<!--  </template>-->
 
 
 
