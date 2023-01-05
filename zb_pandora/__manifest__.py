@@ -13,6 +13,7 @@
     'website': "http://zbeanztech.com/",
     'assets': {
             'point_of_sale.assets': [
+                'zb_pandora/static/src/css/pos.css',
                 'zb_pandora/static/src/xml/**/*',
                 'zb_pandora/static/src/js/**/*',
 

@@ -11,20 +11,21 @@
                         By
                     </div>
                      <div class="attribute-name-cell" >
-                        <input type="radio" name="discountType" value="percent" t-att-checked="this.get_discount_type() == 'percent'" t-on-click="() => this.changeDiscountMode('percent')"  style="display:inline;width:10%;min-height:20px;"/>
+                        <input type="radio" name="discountType" value="percent" t-att-checked="this.get_discount_type() == 'percent'" t-on-click="() => this.changeDiscountMode('percent')"  style="display:inline;width:10%;min-height:20px;" t-att-disabled="this.get_discount_type() ? 'disabled' : ''"/>
                         <label style="display:inline-block;vertical-align:middle;height:35px;margin-top:5px;font-size:15px" >
                                 %
                         </label>
-                        <input type="radio" name="discountType" t-att-checked="this.get_discount_type() == 'fixed'" value="fixed" t-on-click="() => this.changeDiscountMode('fixed')" style="display:inline;width:10%;min-height:20px"/>
+                        <input type="radio" name="discountType" t-att-checked="this.get_discount_type() == 'fixed'" value="fixed" t-on-click="() => this.changeDiscountMode('fixed')" style="display:inline;width:10%;min-height:20px" t-att-disabled="this.get_discount_type() ? 'disabled' : ''"/>
                         <label style="display:inline-block;vertical-align:middle;height:35px;margin-top:5px;min-height:25px;font-size:15px">
                                 BD
                         </label>
                         
                     </div>
-                    <div class="attribute-name-cell" style="font-size:17px;">
+                    <div  t-att-class="'attribute-name-cell ' + (this.get_discount_type() == 'percent' || this.get_discount_type() == '' ? '' : 'd-none')" style="font-size:17px;" >
                         Apply On
                     </div>
-                     <div class="attribute-name-cell">
+
+                     <div t-att-class="'attribute-name-cell ' + (this.get_discount_type() == 'percent' || this.get_discount_type() == '' ? '' : 'd-none')">
                         <input type="radio" name="globalType" value="line"  t-on-click="_onAmountKeypress" checked="checked"  style="display:inline;width:10%;min-height:20px;"/>
                         <label style="display:inline-block;vertical-align:middle;height:35px;margin-top:5px;font-size:15px" >
                                 Line

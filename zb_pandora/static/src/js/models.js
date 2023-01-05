@@ -23,7 +23,7 @@ const PandaInOrderline = (Orderline) => class PandaInOrderline extends Orderline
     export_as_JSON() {
         const json = super.export_as_JSON(...arguments);
         json.disc_fixed_amt = this.disc_fixed_amt;
-        return json;
+        return json
     }
     init_from_JSON(json) {
         super.init_from_JSON(...arguments);

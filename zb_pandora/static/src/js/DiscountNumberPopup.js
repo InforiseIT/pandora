@@ -66,6 +66,16 @@ odoo.define('zb_pandor.DiscountNumberPopup', function(require) {
                 super.confirm();
             }
         }
+        cancel(event) {
+            var order    = this.env.pos.get_order();
+            var lines = order.get_orderlines();
+            var filter_line = lines.filter(line => line.get_discount() === 0);
+            if(filter_line.length == lines.length)
+            {
+                order.set_pos_discount_type(null)
+            }
+            super.confirm();
+        }
         _onAmountKeypress(event) {
             this.state.globalStatus = event.target.value
         }

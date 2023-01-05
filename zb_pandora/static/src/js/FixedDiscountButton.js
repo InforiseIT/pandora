@@ -14,8 +14,9 @@ odoo.define('pos_discount.FixedDiscountButton', function(require) {
             useListener('click', this.onClick);
 
         }
-        async onClick() {
+        async onClick(ev) {
             var self = this;
+
             const { confirmed, payload } = await this.showPopup('DiscountNumberPopup', {
                 title: this.env._t('Discount'),
                 startingValue: 1,
