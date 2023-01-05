@@ -9,6 +9,26 @@ const Registries = require('point_of_sale.Registries');
 
 
 const PandaInOrderline = (Orderline) => class PandaInOrderline extends Orderline {
+
+    constructor() {
+        super(...arguments);
+        this.disc_fixed_amt = 0
+    }
+    set_fixed_disc_amt(disc_amt){
+      this.disc_fixed_amt = disc_amt;
+    }
+    get_fixed_disc_amt() {
+      return this.disc_fixed_amt;
+    }
+    export_as_JSON() {
+        const json = super.export_as_JSON(...arguments);
+        json.disc_fixed_amt = this.disc_fixed_amt;
+        return json
+    }
+    init_from_JSON(json) {
+        super.init_from_JSON(...arguments);
+        this.disc_fixed_amt = json.disc_fixed_amt
+    }
     export_for_printing() {
         var line = super.export_for_printing(...arguments);
         line.default_code = this.get_product().default_code;
@@ -59,6 +79,19 @@ const PandaInOrderline = (Orderline) => class PandaInOrderline extends Orderline
 Registries.Model.extend(Orderline, PandaInOrderline);
 
 const PandaInOrder = (Order) => class PandaInOrder extends Order {
+
+    constructor() {
+        super(...arguments);
+        this.discount_type = null
+        this.save_to_db();
+    }
+    set_pos_discount_type (discount_type){
+      this.discount_type = discount_type;
+    }
+    get_pos_discount_type() {
+      return this.discount_type;
+    }
+
     export_for_printing() {
         var json = super.export_for_printing(...arguments)
         console.log(this.pos.company)

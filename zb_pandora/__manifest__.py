@@ -13,6 +13,7 @@
     'website': "http://zbeanztech.com/",
     'assets': {
             'point_of_sale.assets': [
+                'zb_pandora/static/src/css/pos.css',
                 'zb_pandora/static/src/xml/**/*',
                 'zb_pandora/static/src/js/**/*',
 
@@ -24,8 +25,7 @@
     'version': '16.00.01',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'point_of_sale',
-                ],
+    'depends': ['base', 'point_of_sale', 'pos_discount'],
 
     # always loaded
     'data': [
