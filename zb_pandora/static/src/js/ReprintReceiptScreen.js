@@ -7,11 +7,12 @@ odoo.define('zb_pandora.ReprintReceiptScreen', function(require) {
 
     const BarcodeReprintReceiptScreen = ReprintReceiptScreen =>
         class extends ReprintReceiptScreen {
-            mounted() {
-                super.mounted();
+            onMounted() {
+                super.onMounted();
                 const order = this.props.order;
                 const order_id = order.uid
                 const barcode_value = order_id.split('Order')
+                console.log(barcode_value,'ssssssss')
                 $("#bcTarget").barcode(barcode_value[0], "code128",{barWidth:1,fontSize: 14,barHeight:50})
                 this.printReceipt();
             }

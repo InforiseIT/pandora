@@ -85,7 +85,7 @@
                         </span><br /><br/>
 
                         <div class="pos-receipt-center-align" style="margin-top:10px;">
-                            <div id="bcTarget" style="padding-left:0;margin-left: 0;"/>
+                            <div id="bcTarget" style="margin:0 auto;"/>
                         </div>
 
 

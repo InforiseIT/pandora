@@ -22,7 +22,7 @@
 
 
     'category': 'Uncategorized',
-    'version': '16.00.01',
+    'version': '16.00.02',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'point_of_sale', 'pos_discount'],
